@@ -1,0 +1,22 @@
+@use './scssVariables.style.scss' as constants;
+
+.app {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.count {
+    font-style: italic;
+    font-weight: 600;
+    font-size: 15rem;
+    color: constants.$blue-button;
+}
+
+.text {
+ font-weight: 400;
+ font-size: 2rem;
+ color: constants.$text-base-color;
+} 

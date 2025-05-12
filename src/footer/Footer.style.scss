@@ -1,0 +1,69 @@
+@use '../scssVariables.style.scss' as constants;
+
+.footer {
+    background-color: constants.$footer-background-color;
+    color: constants.$text-light-color;
+    padding: 3rem 5rem;
+    font-family: "Poppins", serif;
+}
+
+.sections {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    height: 100%;
+}
+
+.section {
+    margin: 1rem 5rem;
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem; 
+
+    h3 {
+        color: constants.$text-light-color;
+        font-weight:900    } 
+}
+
+.section-options {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    padding: 0;
+
+    gap: 1rem;
+    a {
+        cursor: pointer;
+        padding: .1rem .3rem;
+    } 
+}
+
+.social {
+
+    flex-grow: .1;
+    margin-left: 3rem;
+    img {
+        height: 30px;
+    }
+
+    ul {
+        display: flex;
+        flex-direction: row;
+    }
+    
+    a:hover {
+        cursor: pointer;
+    }
+}
+
+.option:hover {
+    background-color: constants.$text-base-color;
+    border-radius: .3rem;
+}
+
+.copyright {
+    text-align: center;
+    margin-top: 3rem;
+    font-weight: 100;
+    border-top: solid 1px constants.$text-base-color-light;
+    padding-top: 1rem;
+}
