@@ -1,0 +1,23 @@
+name: Visitor CI
+
+on:
+  push:
+    branches:
+      - 'main'
+    
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+      
+    - name: Set up node enviroment
+      uses: actions/setup-node@v4
+      with:
+        node-version: 'latest'
+  
+    - name: Build artifact
+      run: "echo building"
