@@ -1,30 +1,29 @@
 pipeline {
-    agent {
-        docker {
-            image 'node:18-alpine'
-            reuseNode true
-        }
-    }
+    agent any
 
     stages {
-
         stage('Build') {
-            steps {
-                echo "Building..."
+            agent {
+                docker {
+                    image 'node:18-alpine'
+                    reuseNode true
+                }
+            }
 
-                sh """
+            steps {
+                echo 'Building...'
+
+                sh '''
                     sh node --version
 
                     npm ci
                     npm run build
-                """
+                '''
             }
         }
 
         stage('Test') {
             steps {
-                cleanWs()
-
                 sh '''
                 echo "Testing..."
             '''
@@ -36,6 +35,8 @@ pipeline {
             sh '''
                test -d ./test && echo  "test exists"
             '''
+
+            cleanWs()
         }
     }
 }
