@@ -1,17 +1,32 @@
 pipeline {
-    agent any
+    agent {
+        docker {
+            image 'node:18-alpine'
+            reuseNode true
+        }
+    }
 
     stages {
+
+        stage('Build') {
+            steps {
+                echo "Building..."
+
+                sh """
+                    sh node --version
+
+                    npm ci
+                    npm run build
+                """
+            }
+        }
+
         stage('Test') {
             steps {
                 cleanWs()
 
                 sh '''
                 echo "Testing..."
-
-                 mkdir test
-
-                ls -la
             '''
             }
         }
