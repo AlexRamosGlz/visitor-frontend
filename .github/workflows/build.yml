@@ -20,4 +20,7 @@ jobs:
         node-version: 'latest'
   
     - name: Build artifact
-      run: "echo building"
+      run: |
+        echo "Building..."
+        npm ci 
+        npm run build
