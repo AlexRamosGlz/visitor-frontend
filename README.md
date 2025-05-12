@@ -18,4 +18,4 @@ Visitor
     ├── index.jsx
     ├── index.scss
     ├── Jenkinsfile
-    └── scssVariables.style.scss
+    └── scssVariables.style.scssc

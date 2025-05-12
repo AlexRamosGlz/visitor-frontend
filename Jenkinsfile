@@ -1,26 +1,26 @@
 pipeline {
-    agent any 
+    agent any
 
-    stage('Test') {
-        
-        steps {
-            cleanWs()
+    stages {
+        stage('Test') {
+            steps {
+                cleanWs()
 
-            sh """
+                sh '''
                 echo "Testing..."
 
                  mkdir test
 
                 ls -la
-            """
+            '''
+            }
         }
     }
-
     post {
         always {
-            sh """
+            sh '''
                test -d ./test && echo  "test exists"
-            """
+            '''
         }
     }
 }
