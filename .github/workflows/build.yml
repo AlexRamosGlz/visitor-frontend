@@ -6,19 +6,15 @@ on:
       - "main"
 
 jobs:
-
   test:
     runs-on: ubuntu-latest
-    
+
     steps:
       - uses: actions/checkout@v4
       - name: run Jest suit
         run: |
           npm install
           npm test
-
-
-
 
   build:
     needs: test
@@ -60,3 +56,14 @@ jobs:
         with:
           push: true
           tags: alexramosglz/visitor:latest
+  post-actions:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: check if job failed
+
+        if: ${{ job.status == 'failure'}}
+        uses: gacts/run-and-post-run@v1
+        with:
+          post: |
+            echo "job failed"
