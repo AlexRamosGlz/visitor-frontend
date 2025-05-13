@@ -56,14 +56,4 @@ jobs:
         with:
           push: true
           tags: alexramosglz/visitor:latest
-  post-actions:
-    runs-on: ubuntu-latest
 
-    steps:
-      - name: check if job failed
-
-        if: ${{ job.status == 'failure'}}
-        uses: gacts/run-and-post-run@v1
-        with:
-          post: |
-            echo "job failed"
