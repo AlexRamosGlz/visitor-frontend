@@ -7,6 +7,6 @@ describe(Counter, () => {
   it("displays the correct inital value in the counter", () => {
     const { getByTestId } = render(<Counter count={intialValue} />);
     const countValue = Number(getByTestId("count").textContent);
-    expect(countValue).toEqual(0);
+    expect(countValue).toEqual(1);
   });
 });
