@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Counter from "./Counter/Counter.component";
 
 async function fetchCount() {
   const URL = "https://ojl8h57z86.execute-api.us-east-1.amazonaws.com/app";
@@ -27,8 +28,8 @@ function App() {
 
   return (
     <div className="app">
-      <span className="count">{count}</span>
-      <p className="text">people have visited this page</p>
+      
+      <Counter count={count}/>
     </div>
   );
 }
