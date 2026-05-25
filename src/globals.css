@@ -1,0 +1,5 @@
+@import 'tailwindcss';
+
+:root {
+  --blue-primary: #0070f3;
+}
