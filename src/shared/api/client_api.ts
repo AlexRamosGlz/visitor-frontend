@@ -40,9 +40,17 @@ class ApiClient {
         }
         return { data: result.data, error: null };
     }
+
+    public async post<T>(url: string, body: any): Promise<{data: T | null; error: ApiError | null}> {
+        const result = await this.request<T>('POST', url, body);
+        if (result instanceof ApiError) {
+            return { data: null, error: result };
+        }
+        return { data: result.data, error: null };
+    }
 }
 
-class ApiError extends Error {
+class ApiError extends Error implements IApiError {
     public code?: number;
 
     constructor(message: string, public details?: string, code?: number) {
@@ -52,3 +60,4 @@ class ApiError extends Error {
 }
 
 export const apiClient = new ApiClient();
+export type { IApiError, ApiResponse };
