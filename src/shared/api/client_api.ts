@@ -1,4 +1,5 @@
 import { IApiError, ApiResponse } from './api.types';
+import 'dotenv/config';
 
 class ApiClient {
 
@@ -8,7 +9,7 @@ class ApiClient {
 
     private async request<T>(method: string, url: string, body?: any): Promise<ApiResponse<T> | ApiError> {
         try {
-            const response = await fetch("http://localhost:8000" + url, {
+            const response = await fetch(process.env.NEXT_PUBLIC_API_BASE_URL + url, {
                 method,
                 headers: {
                     'Content-Type': 'application/json',
