@@ -3,15 +3,17 @@ import { IApiError, ApiResponse } from './api.types';
 class ApiClient {
 
     private isApiError(data: any): data is ApiError {
-        return data && typeof data.message === 'string';
+        return !data && typeof !data.message === 'string';
     }
 
     private async request<T>(method: string, url: string, body?: any): Promise<ApiResponse<T> | ApiError> {
         try {
-            const response = await fetch(url, {
+            const response = await fetch("http://localhost:8000" + url, {
                 method,
                 headers: {
                     'Content-Type': 'application/json',
+                    'accept': 'application/json',
+                    'Access-Control-Allow-Origin': '*',
                 },
                 body: body ? JSON.stringify(body) : undefined,
             });
@@ -43,6 +45,14 @@ class ApiClient {
 
     public async post<T>(url: string, body: any): Promise<{data: T | null; error: ApiError | null}> {
         const result = await this.request<T>('POST', url, body);
+        if (result instanceof ApiError) {
+            return { data: null, error: result };
+        }
+        return { data: result.data, error: null };
+    }
+
+    public async patch<T>(url: string, body: any): Promise<{data: T | null; error: ApiError | null}> {
+        const result = await this.request<T>('PATCH', url, body);
         if (result instanceof ApiError) {
             return { data: null, error: result };
         }

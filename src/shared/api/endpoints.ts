@@ -1,5 +1,5 @@
 export const ENDPOINTS = {
     COUNTER: {
-        BASE: '/api/count',
+        BASE: (id: number) => `/api/count/${id}`,
     }
 }

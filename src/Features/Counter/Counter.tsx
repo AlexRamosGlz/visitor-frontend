@@ -1,12 +1,16 @@
+'use client';
+
 import React, {useEffect, useContext } from 'react';
 import { CounterContext } from '@/context/counterContext';
+import {useParams} from 'next/navigation';
 
 export default function Counter(): React.ReactNode {
-  const { state, increment, fetchCount } = useContext(CounterContext);
+  const { state, increment } = useContext(CounterContext);
+  const { id } = useParams();
 
   useEffect(() => {
-    fetchCount();
-  }, [fetchCount]);
+    increment(Number(id));
+  }, []);
   return (
     <div className="flex flex-col items-center justify-center">
       <span className="text-[var(--blue-primary)] text-[12rem] font-bold italic" data-testid="count">
